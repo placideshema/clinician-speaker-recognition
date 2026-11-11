@@ -1,0 +1,198 @@
+Run: python src/pipeline.py data/ami_full.wav --num-speakers 4 --model small
+
+Transcript of the audio ami_full.wav of around 22 minutes long:
+
+4.50s → 7.14s SPEAKER_02: Like she's already produced a PowerPoint.
+7.72s → 8.66s SPEAKER_03: I think it's already
+33.04s → 33.76s SPEAKER_03: Okay
+55.88s → 59.30s SPEAKER_03: Well, it's the kick-off meeting for our our project
+61.84s → 66.70s SPEAKER_03: And And this is just what we're going to be doing over the next 25 minutes
+67.96s → 77.30s SPEAKER_03: And so first of all just to kind of make sure that we all know each other. I'm Laura and I'm the project manager Do you want to introduce yourself again?
+81.36s → 81.80s UNKNOWN: Okay,
+81.80s → 84.24s SPEAKER_02: and I'm Andrew and I'm our marketing
+86.48s → 88.48s SPEAKER_01: Experts I'm Greg and I'm huge interface
+88.48s → 90.24s SPEAKER_03: great Okay
+92.34s → 99.08s SPEAKER_03: So we're designing a new remote control and um, oh I have to record. He's here actually so that's
+100.12s → 101.22s SPEAKER_03: David Andrew and Craig
+108.81s → 113.69s SPEAKER_03: Um, yes, we did a design a new remote control. Um, as you can see it's supposed
+113.69s → 113.69s UNKNOWN: to
+113.69s → 131.99s SPEAKER_03: be original trendy and user friendly um So that's kind of our brief that were um And so there are three different stages to the design. I'm not really sure what what you guys have already received and In your emails, what did you get?
+139.15s → 139.71s SPEAKER_00: Yeah,
+139.73s → 140.05s SPEAKER_02: that's
+140.05s → 152.39s SPEAKER_03: what everybody got. Okay. Um So we're going to have like individual work and then a meeting about it and Repeat that process three times and Um
+154.19s → 157.31s SPEAKER_03: And at this point you get try out the whiteboard over there
+159.57s → 168.29s SPEAKER_03: So, uh You get to draw your favorite animal and Sum up yourfavorite characteristics of it. So who would like to go first? Very good
+176.31s → 176.79s SPEAKER_02: So
+181.05s → 182.13s SPEAKER_02: this one here, right?
+183.73s → 184.21s SPEAKER_02: Okay
+185.97s → 188.17s SPEAKER_02: All right, my favorite animal
+190.63s → 191.59s SPEAKER_02: Is like
+202.92s → 203.88s SPEAKER_02: A beagle
+213.07s → 229.68s SPEAKER_02: Character favorite characteristics of it. Is that right? Yeah, uh, right. Well, basically, um High priority for any animal for me is that they be willing to take a lot of physical affection from their family and
+230.70s → 233.20s SPEAKER_02: Yeah, they have lots of personality and
+235.33s → 240.41s SPEAKER_02: Be fit and then robust good health. So this is blue blue beagle
+243.17s → 243.57s SPEAKER_03: Right
+245.61s → 246.01s UNKNOWN: My
+255.13s → 256.39s SPEAKER_01: favorite animal would be a monkey
+267.76s → 273.48s SPEAKER_01: And then the small cutin furry and uh when plant needs becomes real i'm going to be up there with them
+281.29s → 282.09s SPEAKER_00: Here you
+286.06s → 293.20s SPEAKER_03: can take as long over this as you like because we haven't got An awful lot to do. It's okay. We do we do don't feel like you're in a rush anyway
+295.80s → 297.78s SPEAKER_02: Actually told you a whole lot more about beagles
+298.46s → 302.10s SPEAKER_03: We might have to get you up again I don't know what mine is.
+302.22s → 302.22s UNKNOWN: I'm
+302.22s → 303.44s SPEAKER_03: gonna have to think in the spot mode
+308.02s → 308.36s SPEAKER_02: Impressionist
+311.58s → 311.92s UNKNOWN: Is
+311.92s → 313.34s SPEAKER_03: that a whale? Yeah
+319.70s → 328.10s SPEAKER_00: Oh my I don't know. It's just the first animal I can think off the top of my head Yes, big reason is because I'm allergic to most animals Logic
+328.10s → 328.28s SPEAKER_03: to
+328.28s → 331.14s SPEAKER_00: animal first, so um, fish was a natural choice
+332.64s → 333.88s SPEAKER_00: Yeah, and I kind of like whales
+338.02s → 338.46s SPEAKER_00: They're
+338.46s → 338.58s SPEAKER_02: quite
+338.58s → 339.92s SPEAKER_00: harmless and mild and
+341.82s → 342.26s SPEAKER_02: I
+342.26s → 346.42s SPEAKER_03: still don't know what I'm gonna write about um
+349.65s → 351.05s SPEAKER_02: Superb sketch by the way
+354.68s → 362.84s SPEAKER_03: I was going to choose a dog as well But I just draw a different kind of dog. My favorite animal is my own dog at home
+364.72s → 365.16s SPEAKER_03: Um,
+366.69s → 369.15s SPEAKER_03: that doesn't really look like him actually he
+373.41s → 376.15s SPEAKER_03: looks more like a pig actually Oh well,
+378.41s → 379.35s SPEAKER_02: I see a dog in there.
+379.51s → 381.01s SPEAKER_03: Do you? Oh, that's very good of you
+382.47s → 383.53s SPEAKER_02: Now I see a rooster
+384.85s → 385.31s UNKNOWN: What
+393.28s → 394.54s SPEAKER_02: kind is it?
+394.54s → 401.88s SPEAKER_03: Um, he's a mixture of uh various things. Um, and what do I like about him? Um
+403.02s → 412.14s SPEAKER_03: That's supposed to suggest that his tail wags. Um, he's very friendly and cheery and always pleased to see you and very kind of affectionate and um
+416.08s → 420.70s SPEAKER_03: And he's quite quite wee as well. So, you know, he can doesn't take up too much space.
+421.74s → 422.10s SPEAKER_03: Um,
+425.68s → 431.06s SPEAKER_03: and uh He does a funny thing where he chases his tail as well. This is quite amusing.
+431.22s → 433.30s SPEAKER_02: Is he aware that this is his own Tail he's chasing
+433.30s → 441.52s SPEAKER_03: it is I think it is he only does it after he's had his dinner And um, he'll just all of a sudden just get up and start chasing his tail He's trying to live again
+443.22s → 444.30s SPEAKER_00: Yeah, probably
+444.30s → 447.34s SPEAKER_02: when he was little he got lots of attention for doing it and yeah,
+447.34s → 449.30s SPEAKER_03: it's never been conditioned Maybe
+450.32s → 452.80s SPEAKER_03: Right, um, where did you find this just down here?
+455.34s → 455.82s SPEAKER_03: Okay
+465.25s → 468.27s SPEAKER_03: Okay, uh, when I need to discuss the project finance
+469.89s → 470.37s SPEAKER_03: Um,
+472.25s → 494.73s SPEAKER_03: so according to the brief, um, we're going to be selling this remote control for 25 euro um, and we're aiming to make 15 million euro Um, so we're going to be selling this one an international scale And uh, we don't want it to cost any more than uh, 1250 euros. So 50 percent of the selling price
+495.71s → 498.35s SPEAKER_02: Um, can we just go over that again? Sure
+499.41s → 500.01s SPEAKER_02: So
+501.21s → 502.41s SPEAKER_02: All right
+505.11s → 508.33s SPEAKER_02: So cost like production cost is All
+508.33s → 508.61s SPEAKER_03: together
+508.61s → 513.85s SPEAKER_02: 1250, but selling price is is that wholesale or retail? Like on the shelf
+515.65s → 516.11s UNKNOWN: I
+516.11s → 522.65s SPEAKER_03: don't know. I imagine I imagine it probably is our sale actually because it's probably up to
+524.01s → 528.45s SPEAKER_03: The um, the retailer to sell it for whatever price they want
+529.73s → 530.19s SPEAKER_03: Um,
+531.47s → 532.45s SPEAKER_03: but I don't know.
+532.53s → 532.53s UNKNOWN: I
+532.53s → 542.15s SPEAKER_03: mean, do you think the fact that it's going to be sold internationally will have a bearing on Highway designer at all Yeah, I think it will Um, well
+548.39s → 554.05s SPEAKER_02: right away. I'm wondering if there's um, Like the dvd players if there are zones. Oh,
+554.05s → 555.25s SPEAKER_03: yeah regions and stuff
+555.25s → 556.35s SPEAKER_02: frequencies or something.
+556.47s → 556.95s SPEAKER_03: Yeah
+556.95s → 562.17s SPEAKER_02: As well as uh characters different
+563.23s → 565.07s SPEAKER_02: Keypad styles and simple.
+565.27s → 570.93s SPEAKER_03: Yeah, well for a remote control. Do you think that would beI suppose it depends on how complicated our remote control is
+580.20s → 580.72s SPEAKER_03: Yeah
+582.60s → 583.12s SPEAKER_02: Okay,
+583.12s → 583.64s SPEAKER_03: and
+583.64s → 588.30s SPEAKER_02: then and then the other thing international on top of the price I'm thinking
+590.59s → 596.41s SPEAKER_02: The price might might appeal to a certain market in one region. Whereas in another it'll be different.
+597.29s → 599.37s SPEAKER_03: So What just like in terms of like the
+599.37s → 599.37s UNKNOWN: wealth
+599.37s → 603.19s SPEAKER_03: of the country like how much money people have to spend on things Or just
+603.19s → 615.55s SPEAKER_02: like Basic product positioning the 25 euro Remote control might be a big hit in london might not be such a big hit in Greece, who knows
+618.97s → 623.85s SPEAKER_03: Marketing good marketing thoughts. Oh gosh, I should be writing all this time. Um
+655.30s → 667.82s SPEAKER_02: Right away. I'm making some kind of assumptions about what what information we're given here thinking Okay, trendy probably means something other than just basic. Yeah, something other than just standard
+670.04s → 673.42s SPEAKER_02: So I'm wondering right away is selling 25 euros.
+673.60s → 673.60s UNKNOWN: Is
+673.60s → 676.22s SPEAKER_02: that sort of that is this going to be like the premium product?
+676.96s → 680.30s SPEAKER_03: Yeah, yeah, like how much does you know a remote control cost?
+681.36s → 682.54s SPEAKER_03: Well 25 euro.
+682.68s → 682.68s UNKNOWN: I
+682.68s → 683.72s SPEAKER_03: mean that's
+683.72s → 683.72s UNKNOWN: um
+684.72s → 691.18s SPEAKER_03: That's about like 18 pounds or something, isn't it? Or no, is it as much as that? 16 17 18 pounds
+692.20s → 699.98s SPEAKER_03: um I don't know. I've never bought a remote control. So I don't know how how good a remote control that would get you. Um
+701.66s → 702.48s SPEAKER_03: But yeah, I
+702.48s → 702.48s UNKNOWN: suppose
+702.48s → 705.04s SPEAKER_03: it has to look kind of cool gimmicky
+706.64s → 707.08s SPEAKER_03: Um,
+711.30s → 712.92s SPEAKER_03: let me just scoot on ahead here
+714.32s → 721.42s SPEAKER_03: Okay, um, well does anybody have anything to add to uh To the finance issue at all
+722.36s → 727.88s SPEAKER_02: Do we have any other background information on like how that compares to other? No,
+727.92s → 732.92s SPEAKER_03: actually that would be useful, wouldn't it if you knew likewhat your money would get you? No
+753.68s → 763.16s SPEAKER_02: Yeah, interesting thing about discussing um Production of remote control for me is that as you point out, I just don't think remote control is being something something people
+764.24s → 772.02s SPEAKER_02: consciously assess in their purchasing habits. It's just like Getting shoelaces with shoes or something
+772.02s → 776.02s SPEAKER_03: just five minutes to end of meeting. Oh, okay. We're a bit behind,
+776.20s → 777.58s SPEAKER_02: you know what I mean like Yeah,
+777.58s → 778.00s SPEAKER_03: so
+778.00s → 793.50s SPEAKER_02: like how do you I mean one one way looking at would be wellthe people producing Television sets, maybe they have to buy remote controls Or another way is maybe people who have tv sets are really fed up with their remote control And they really want a better one or something
+794.14s → 800.06s SPEAKER_01: My parents went and bought them more controls because they got fed up by having four or five different Of course we reached the
+800.06s → 800.26s SPEAKER_02: right
+800.26s → 802.04s SPEAKER_01: right So again,
+802.22s → 802.22s UNKNOWN: it
+802.22s → 802.30s SPEAKER_02: was
+802.30s → 804.34s SPEAKER_01: just how many devices is a good call
+804.34s → 807.30s SPEAKER_02: right so in function one of the priorities might be to
+808.34s → 810.30s SPEAKER_02: combine as many uses
+811.26s → 820.00s SPEAKER_03: Right, so do you think that should be like a main design aim of our remote control that you know? Do your your satellite and your regular tally and your vcr and everything well
+820.00s → 842.64s SPEAKER_02: like um Maybe what we could use as a sort of like an example of a successful other piece of technology is Palm palm pilots They're going from being just like little sort of scribble boards to cameras mp3 players telephones Everything agenda So like I wonder if we might add something new to the to the remote control market such as the lighting in your house or
+843.66s → 844.14s SPEAKER_02: Or
+844.14s → 852.84s SPEAKER_03: even like, you know, it's about What you want to watch likeyou might put in there Or I want to watch such and such and okay. That's a good idea. So extra functionalities
+853.40s → 869.98s SPEAKER_02: Like personally for me at home, I've I've combined the the audio video of my television set and my dvd player and my cd player So they well work actually function together, but I have different remote controls for each of them So it's sortof ironic that that then they're in their
+873.32s → 873.80s UNKNOWN: You
+873.80s → 878.86s SPEAKER_02: know the sound everything it's just one system, but each one's got its own little part
+884.25s → 884.73s SPEAKER_03: Okay
+886.23s → 902.63s SPEAKER_03: We're gonna have to wrap up pretty quickly in the next couple of minutes. Um, I'll just check with nothing else Okay, um So anything else anybody wants to add about what they don't like about remote controls they've used what they Would really like to be part of this new one at all
+904.23s → 905.89s SPEAKER_03: You keep losing them, okay
+912.40s → 912.80s SPEAKER_00: That's
+914.86s → 915.26s SPEAKER_02: You
+915.26s → 922.46s SPEAKER_03: get those ones where you can if you like whistle or make a really high pitched noise they beep Yeah, they're I mean is that something we'd want to include you think
+927.36s → 946.54s SPEAKER_02: I remember when the first remote control my My family had was on a cable actually the cable between in the tv and big like buttons That sort of like like on a blender or something like and you know, and I think about what they are now It'sbetter, but actually it's still kind of I don't know A massive junky thing on the table. Maybe
+946.54s → 947.40s SPEAKER_03: we could think about
+947.40s → 951.12s SPEAKER_02: how Could be more, you know Streamline
+951.12s → 952.64s SPEAKER_03: maybe like a touch screen or something
+952.64s → 954.34s SPEAKER_02: something like that. Yeah, or
+954.34s → 954.54s SPEAKER_03: whatever
+954.54s → 956.24s SPEAKER_02: would be technologically reasonable
+956.72s → 959.08s SPEAKER_03: Okay, well it could it could be that
+959.08s → 962.36s SPEAKER_02: it could be that functionally that doesn't make it any better But that just the appeal
+962.36s → 962.60s SPEAKER_03: of
+962.60s → 972.88s SPEAKER_02: of not having you know these days If every people things inpeople's homes are becoming more and more like chic, you know Nicer materials and okay might be
+975.11s → 975.47s SPEAKER_03: Be
+975.47s → 976.33s SPEAKER_02: worth exploring.
+976.89s → 988.33s SPEAKER_03: Right. Well, um, so it is to wrap up the next meeting is going to be in 30 minutes So that's about um about 10 to 12 by my watch. Um, so in between now and then
+989.47s → 1000.83s SPEAKER_03: As the industrial designer you're going to be working on You need to actually work in design of it. So, you know what you're doing there um For our user interface technical functions,
+1001.11s → 1001.11s UNKNOWN: I
+1001.11s → 1008.61s SPEAKER_03: guess that's you know, like what we've been talking aboutwhat it'll actually do and uh marketing executive
+1009.63s → 1019.19s SPEAKER_03: You'll be just thinking about what it actually what you know, what requirements it has to has to fulfill And you'll get instructions emailed to you, I guess
+1019.19s → 1019.99s SPEAKER_02: Okay
+1021.61s → 1022.21s SPEAKER_03: Yeah,
+1028.22s → 1030.54s SPEAKER_03: so it's the functional design stages next
+1034.30s → 1037.52s SPEAKER_03: And uh And that's the end of the meeting
+1038.82s → 1042.68s SPEAKER_03: So I got that little message a lot sooner than I thought I would Before
+1046.62s → 1056.28s SPEAKER_02: we wrap up just to make sure we're all on the same page here. Um, do we We're given sort of an example of a coffee machine or
+1056.28s → 1056.64s SPEAKER_03: something, right?
+1057.28s → 1057.32s SPEAKER_02: Well
+1058.68s → 1059.12s SPEAKER_02: um
+1060.64s → 1073.82s SPEAKER_02: Are we right now on the assumption that our television remote control may have features which go beyond the television Or are we keeping sort of like a design commitment to television features Okay.
+1073.84s → 1084.68s SPEAKER_03: Well, just very quickly because we're supposed to finish now. Um, I guess that's up to us I mean, you probably want some kind of unique selling point of it. Okay. So, um, You know
+1087.24s → 1087.74s SPEAKER_00: Yeah
+1089.62s → 1090.12s SPEAKER_00: Okay
+1091.98s → 1092.48s SPEAKER_00: Yeah
+1098.52s → 1098.84s SPEAKER_00: Okay,
+1099.30s → 1102.90s SPEAKER_03: right. Okay. Well, that's that's the end of the meeting then. Um
+1106.40s → 1107.58s SPEAKER_03: Thank you all for coming
+1110.90s → 1112.96s SPEAKER_03: God, I hope that was what they wanted us to do
+1119.58s → 1119.90s SPEAKER_02: Great
+1129.48s → 1130.12s SPEAKER_03: I think
+1133.45s → 1136.55s SPEAKER_03: if you can just leave it on maybe and then
+1241.80s → 1243.20s SPEAKER_03: Um,
+1252.42s → 1252.42s UNKNOWN: oh god, this has turned itself off. Oh
+1258.08s → 1259.50s SPEAKER_03: Uh, I don't know
