@@ -1,5 +1,4 @@
 import argparse
-<<<<<<< HEAD
 import os
 from math import gcd
 from pathlib import Path
@@ -155,7 +154,6 @@ def main():
             f'{row["start"]:.2f}s → {row["end"]:.2f}s '
             f'{row["speaker"]}: {row["text"].strip()}'
         )
-=======
 from pathlib import Path
 
 from src.diarization import diarize_audio
@@ -225,7 +223,6 @@ def main() -> None:
         "\nUnmatched speakers are left unknown; they are not automatically "
         "classified as patients."
     )
->>>>>>> b99732c (Speaker diarization successfull)
 
 
 if __name__ == "__main__":
