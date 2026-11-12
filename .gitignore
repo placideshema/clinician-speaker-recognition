@@ -3,6 +3,9 @@ venv/
 __pycache__/
 *.pyc
 .env
+.npz 
+.wav
+.m4a
 .DS_Store
 data/
 models/

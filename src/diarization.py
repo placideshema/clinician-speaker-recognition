@@ -1,7 +1,8 @@
 import argparse
 import os
+from pathlib import Path
+from typing import Any, Callable
 
-from faster_whisper import WhisperModel
 from pyannote.audio import Pipeline
 
 

@@ -1,4 +1,5 @@
 import argparse
+<<<<<<< HEAD
 import os
 from math import gcd
 from pathlib import Path
@@ -154,6 +155,77 @@ def main():
             f'{row["start"]:.2f}s → {row["end"]:.2f}s '
             f'{row["speaker"]}: {row["text"].strip()}'
         )
+=======
+from pathlib import Path
+
+from src.diarization import diarize_audio
+from src.speaker_embedding import extract_speaker_embeddings
+from src.speaker_identification import load_profile, match_speakers
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(
+        description="Diarize audio and compare its speakers to one enrolled clinician."
+    )
+    parser.add_argument("--audio", required=True, type=Path, help="Audio to process.")
+    parser.add_argument(
+        "--profile",
+        required=True,
+        type=Path,
+        help="Clinician embedding profile created by enroll_clinician.",
+    )
+    parser.add_argument(
+        "--num-speakers",
+        type=int,
+        default=2,
+        help="Known speaker count; defaults to 2.",
+    )
+    parser.add_argument(
+        "--threshold",
+        type=float,
+        default=0.75,
+        help=(
+            "Experimental cosine-similarity cutoff (default: 0.75). "
+            "This is not a clinically validated threshold."
+        ),
+    )
+    args = parser.parse_args()
+
+    if args.num_speakers < 1:
+        parser.error("--num-speakers must be at least 1.")
+    if not -1.0 <= args.threshold <= 1.0:
+        parser.error("--threshold must be between -1 and 1.")
+
+    profile = load_profile(args.profile)
+    output = diarize_audio(args.audio, num_speakers=args.num_speakers)
+    embeddings = extract_speaker_embeddings(output)
+    matches = match_speakers(embeddings, profile, args.threshold)
+    match_by_label = {match.speaker_label: match for match in matches}
+
+    print(f"\nSpeaker comparison for clinician ID {profile.clinician_id!r}")
+    print(f"Cosine threshold: {args.threshold:.2f} (experimental)")
+    for match in matches:
+        status = (
+            f"CLINICIAN MATCH: {match.clinician_id}"
+            if match.matched
+            else "UNKNOWN / not confirmed as clinician"
+        )
+        print(
+            f"{match.speaker_label}: {status} "
+            f"(cosine similarity {match.similarity:.3f})"
+        )
+
+    print("\nDetected speaker segments:")
+    for turn, speaker in output.speaker_diarization:
+        match = match_by_label[speaker]
+        role = "clinician" if match.matched else "unknown"
+        print(f"{turn.start:.2f}s → {turn.end:.2f}s : {speaker} [{role}]")
+
+    print(
+        "\nUnmatched speakers are left unknown; they are not automatically "
+        "classified as patients."
+    )
+>>>>>>> b99732c (Speaker diarization successfull)
 
 
 if __name__ == "__main__":

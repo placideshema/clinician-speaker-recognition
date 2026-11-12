@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <title>Clinician Voice Lab</title>
+    <style>
+      :root {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: #17231f;
+        background: #f3f6f2;
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        --green: #176b52;
+        --green-dark: #10513f;
+        --mint: #e4f2eb;
+        --line: #dce5df;
+        --muted: #64736c;
+        --amber: #a76b14;
+      }
+
+      * { box-sizing: border-box; }
+      body { margin: 0; min-width: 320px; }
+      button, input, select { font: inherit; }
+      .shell { max-width: 1080px; margin: 0 auto; padding: 38px 24px 64px; }
+      .topline { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+      .brand { display: flex; align-items: center; gap: 12px; }
+      .brand-mark {
+        display: grid; width: 42px; height: 42px; place-items: center; border-radius: 14px;
+        color: #fff; background: var(--green); font-size: 19px; font-weight: 750;
+      }
+      .eyebrow { margin: 0 0 4px; color: var(--green); font-size: 11px; font-weight: 750; letter-spacing: .13em; text-transform: uppercase; }
+      h1 { margin: 0; font-size: 17px; letter-spacing: -.025em; }
+      .local-pill { border: 1px solid #cfe2d7; border-radius: 999px; padding: 8px 11px; color: var(--green-dark); background: #edf7f0; font-size: 12px; font-weight: 650; }
+      .local-pill::before { content: ""; display: inline-block; width: 7px; height: 7px; margin: 0 7px 1px 0; border-radius: 50%; background: #2c9a68; }
+      .intro { max-width: 700px; margin: 52px 0 30px; }
+      .intro h2 { margin: 0 0 10px; font-size: clamp(30px, 5vw, 46px); letter-spacing: -.055em; line-height: 1.08; }
+      .intro p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.65; }
+      .steps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+      .card { border: 1px solid var(--line); border-radius: 18px; background: #fff; box-shadow: 0 8px 24px #17231f08; }
+      .form-card { padding: 24px; }
+      .card-heading { display: flex; align-items: flex-start; gap: 13px; margin-bottom: 22px; }
+      .step-no { display: grid; flex: 0 0 34px; width: 34px; height: 34px; place-items: center; border-radius: 11px; color: var(--green); background: var(--mint); font-weight: 750; }
+      h3 { margin: 0 0 5px; font-size: 17px; letter-spacing: -.025em; }
+      .card-heading p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
+      label { display: block; margin: 16px 0 7px; color: #394840; font-size: 12px; font-weight: 700; }
+      input[type="text"], input[type="number"], select {
+        width: 100%; min-height: 43px; padding: 10px 12px; border: 1px solid #d5dfd9; border-radius: 10px; color: #17231f; background: #fff;
+      }
+      input[type="file"] { width: 100%; padding: 10px; border: 1px dashed #cbd9d0; border-radius: 10px; color: var(--muted); background: #fafcfb; font-size: 12px; }
+      input:focus, select:focus, button:focus-visible { outline: 3px solid #8cc9ad88; outline-offset: 2px; }
+      .hint { margin: 7px 0 0; color: var(--muted); font-size: 11px; line-height: 1.5; }
+      .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+      .range-row { display: flex; align-items: center; gap: 11px; }
+      input[type="range"] { flex: 1; accent-color: var(--green); }
+      output { min-width: 40px; color: var(--green-dark); font-size: 13px; font-weight: 700; text-align: right; }
+      .primary {
+        display: inline-flex; min-height: 44px; align-items: center; justify-content: center; gap: 8px;
+        width: 100%; margin-top: 21px; padding: 10px 15px; border: 0; border-radius: 10px;
+        color: #fff; background: var(--green); font-weight: 700; cursor: pointer; transition: background .15s, transform .15s;
+      }
+      .primary:hover { background: var(--green-dark); }
+      .primary:active { transform: translateY(1px); }
+      .primary:disabled { opacity: .58; cursor: wait; }
+      .job-progress { margin-top: 15px; }
+      .job-progress[hidden] { display: none; }
+      .job-progress-label { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 7px; color: #53635a; font-size: 11px; }
+      .job-progress-label strong { color: var(--green-dark); font-variant-numeric: tabular-nums; }
+      .job-progress progress { display: block; width: 100%; height: 9px; overflow: hidden; border: 0; border-radius: 999px; background: #e9efeb; accent-color: var(--green); }
+      .job-progress progress::-webkit-progress-bar { border-radius: 999px; background: #e9efeb; }
+      .job-progress progress::-webkit-progress-value { border-radius: 999px; background: linear-gradient(90deg, #176b52, #63ad87); transition: width .3s ease; }
+      .job-progress progress::-moz-progress-bar { border-radius: 999px; background: linear-gradient(90deg, #176b52, #63ad87); }
+      .job-progress.loading progress { animation: progress-pulse 1.5s ease-in-out infinite; }
+      @keyframes progress-pulse { 50% { opacity: .5; } }
+      .status { min-height: 20px; margin: 12px 0 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
+      .status.error { color: #a43e32; }
+      .notice { margin: 18px 0 26px; padding: 14px 16px; border: 1px solid #eadfca; border-radius: 12px; color: #715729; background: #fffaf0; font-size: 12px; line-height: 1.6; }
+      .results { display: none; margin-top: 22px; padding: 24px; }
+      .results.visible { display: block; }
+      .results-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 18px; }
+      .results-head p { margin: 4px 0 0; color: var(--muted); font-size: 12px; }
+      .score-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+      .score-card { padding: 15px; border: 1px solid var(--line); border-radius: 13px; background: #fcfdfc; }
+      .score-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+      .speaker-name { font-size: 13px; font-weight: 750; }
+      .badge { padding: 5px 8px; border-radius: 999px; color: #586860; background: #edf1ee; font-size: 10px; font-weight: 750; }
+      .badge.match { color: #176b52; background: #e1f3e8; }
+      .score { margin: 13px 0 7px; font-size: 25px; font-weight: 750; letter-spacing: -.04em; }
+      .score-caption { color: var(--muted); font-size: 11px; }
+      .meter { height: 5px; margin-top: 12px; overflow: hidden; border-radius: 9px; background: #e9efeb; }
+      .meter span { display: block; height: 100%; border-radius: inherit; background: #79b99a; }
+      .audio-wrap { margin-top: 25px; }
+      .audio-wrap h4 { margin: 0 0 10px; font-size: 13px; }
+      audio { display: block; width: 100%; height: 42px; }
+      .timeline { margin-top: 23px; }
+      .timeline-title { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+      .timeline-title h4 { margin: 0; font-size: 13px; }
+      .timeline-title span { color: var(--muted); font-size: 11px; }
+      .timeline-help { margin: -4px 0 12px; color: var(--muted); font-size: 11px; }
+      .timeline-now { display: flex; justify-content: space-between; gap: 12px; margin: 0 0 10px; color: #53635a; font-size: 11px; }
+      .timeline-now strong { color: var(--green-dark); font-variant-numeric: tabular-nums; }
+      .track-stack { position: relative; }
+      .track { position: relative; min-height: 51px; margin: 8px 0; border: 1px solid #edf1ee; border-radius: 10px; background: #fafcfb; }
+      .track-label { position: absolute; z-index: 2; top: 50%; left: 10px; width: 93px; transform: translateY(-50%); overflow: hidden; color: #46564d; font-size: 10px; font-weight: 750; text-overflow: ellipsis; white-space: nowrap; }
+      .track-area { position: absolute; inset: 0 8px 0 110px; padding: 0; border: 0; background: transparent; cursor: crosshair; }
+      .segment { position: absolute; top: 9px; bottom: 9px; min-width: 3px; overflow: hidden; border-radius: 6px; color: #174e3c; background: #b6e2ca; font-size: 10px; font-weight: 700; text-overflow: clip; white-space: nowrap; }
+      .segment.unknown { color: #624b20; background: #f2dfb6; }
+      .segment.active { z-index: 1; box-shadow: 0 0 0 2px #176b52, 0 0 0 4px #176b5226; }
+      .segment.unknown.active { box-shadow: 0 0 0 2px #a76b14, 0 0 0 4px #a76b1426; }
+      .playhead-line { position: absolute; z-index: 3; top: 0; bottom: 0; width: 0; border-left: 2px solid #d34c3d; pointer-events: none; }
+      .playhead-line::before { position: absolute; top: -3px; left: -5px; width: 9px; height: 9px; border-radius: 50%; background: #d34c3d; content: ""; }
+      .axis { position: relative; height: 18px; margin-left: 110px; color: #849188; font-size: 10px; }
+      .axis span { position: absolute; transform: translateX(-50%); }
+      .axis span:first-child { transform: none; }
+      .axis span:last-child { transform: translateX(-100%); }
+      .empty { padding: 26px 12px; border: 1px dashed #ccd9d1; border-radius: 12px; color: var(--muted); font-size: 12px; text-align: center; }
+      footer { margin-top: 27px; color: #75827b; font-size: 11px; line-height: 1.6; text-align: center; }
+      @media (max-width: 720px) {
+        .shell { padding: 23px 15px 44px; }
+        .intro { margin-top: 38px; }
+        .steps { grid-template-columns: 1fr; }
+        .form-card, .results { padding: 19px; }
+        .track-label { width: 76px; font-size: 9px; }
+        .track-area { left: 88px; }
+        .axis { margin-left: 88px; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topline">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">V</div>
+          <div>
+            <p class="eyebrow">Synaptec · Audio research</p>
+            <h1>Clinician Voice Lab</h1>
+          </div>
+        </div>
+        <span class="local-pill">Local session</span>
+      </header>
+
+      <section class="intro">
+        <h2>See who’s speaking.</h2>
+        <p>Enroll a clinician voice, then compare it with diarized speakers in a conversation. Review the similarity scores and turn timeline side by side.</p>
+      </section>
+
+      <section class="steps" aria-label="Voice processing steps">
+        <form class="card form-card" id="enroll-form">
+          <div class="card-heading">
+            <span class="step-no">01</span>
+            <div><h3>Enroll a clinician</h3><p>Create a private voice reference from a clean, single-speaker recording.</p></div>
+          </div>
+          <label for="clinician-id">Pseudonymous clinician ID</label>
+          <input id="clinician-id" name="clinician_id" type="text" placeholder="clinician_001" pattern="[A-Za-z0-9][A-Za-z0-9_.-]*" required>
+          <label for="enroll-audio">Clinician-only audio</label>
+          <input id="enroll-audio" name="audio" type="file" accept="audio/*,.wav,.m4a,.flac,.ogg,.aac" required>
+          <p class="hint">Use a clear sample with no patient or background voices. Audio is temporarily processed on this computer.</p>
+          <button class="primary" type="submit">Create voice profile <span aria-hidden="true">→</span></button>
+          <div class="job-progress" id="enroll-progress" hidden>
+            <div class="job-progress-label"><span>Preparing</span><strong>0%</strong></div>
+            <progress max="100" value="0" aria-label="Enrollment progress"></progress>
+          </div>
+          <p class="status" id="enroll-status" role="status" aria-live="polite"></p>
+        </form>
+
+        <form class="card form-card" id="analyze-form">
+          <div class="card-heading">
+            <span class="step-no">02</span>
+            <div><h3>Analyze a conversation</h3><p>Diarize the audio and compare each speaker with an enrolled profile.</p></div>
+          </div>
+          <label for="profile">Clinician profile</label>
+          <select id="profile" name="profile" required>
+            <option value="">Loading profiles…</option>
+          </select>
+          <label for="conversation-audio">Conversation audio</label>
+          <input id="conversation-audio" name="audio" type="file" accept="audio/*,.wav,.m4a,.flac,.ogg,.aac" required>
+          <div class="row">
+            <div>
+              <label for="num-speakers">Expected speakers</label>
+              <input id="num-speakers" name="num_speakers" type="number" min="1" max="20" value="2" required>
+            </div>
+            <div>
+              <label for="threshold">Match cutoff</label>
+              <div class="range-row">
+                <input id="threshold" name="threshold" type="range" min="0.50" max="0.95" step="0.01" value="0.75">
+                <output id="threshold-value" for="threshold">0.75</output>
+              </div>
+            </div>
+          </div>
+          <p class="hint">The cutoff is experimental, not a probability or clinically validated setting.</p>
+          <button class="primary" type="submit">Analyze speakers <span aria-hidden="true">→</span></button>
+          <div class="job-progress" id="analyze-progress" hidden>
+            <div class="job-progress-label"><span>Preparing</span><strong>0%</strong></div>
+            <progress max="100" value="0" aria-label="Speaker analysis progress"></progress>
+          </div>
+          <p class="status" id="analyze-status" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <aside class="notice">
+        <strong>Research prototype.</strong> Voice profiles are sensitive biometric data. This app listens only on localhost, processes audio on this computer, and removes temporary uploads after each request. Similarity matches are experimental; unknown speakers are not automatically labeled as patients.
+      </aside>
+
+      <section class="card results" id="results" aria-live="polite">
+        <div class="results-head">
+          <div><h3>Speaker analysis</h3><p id="results-subtitle"></p></div>
+          <span class="badge">Experimental</span>
+        </div>
+        <div class="score-grid" id="score-grid"></div>
+        <div class="audio-wrap" id="audio-wrap" hidden>
+          <h4>Conversation playback</h4>
+          <audio id="audio-player" controls preload="metadata"></audio>
+        </div>
+        <div class="timeline" id="timeline-wrap">
+          <div class="timeline-title"><h4>Speaker turns · Original audio</h4><span id="timeline-duration"></span></div>
+          <p class="timeline-help">The red line follows playback across every speaker lane. Click any lane to seek the original audio.</p>
+          <div class="timeline-now">
+            <span>Audio position: <strong id="timeline-current">0:00</strong></span>
+            <span id="active-speakers">No active speaker</span>
+          </div>
+          <div id="timeline"><div class="empty">Run an analysis to see speaker turns.</div></div>
+        </div>
+      </section>
+
+      <footer>Built for local experimentation. Confirm speaker identity independently before using any result.</footer>
+    </main>
+    <script>
+      const $ = (selector) => document.querySelector(selector);
+      const profileSelect = $("#profile");
+      const threshold = $("#threshold");
+      const thresholdValue = $("#threshold-value");
+      const resultSection = $("#results");
+      const audioInput = $("#conversation-audio");
+      const audioPlayer = $("#audio-player");
+      let analysis = null;
+      let audioUrl = null;
+      let timelineDuration = 0;
+      let resizeObserver = null;
+
+      threshold.addEventListener("input", () => {
+        thresholdValue.value = Number(threshold.value).toFixed(2);
+      });
+
+      async function refreshProfiles(selectedId = "") {
+        const response = await fetch("/api/profiles");
+        const payload = await response.json();
+        if (!response.ok) throw new Error(payload.error || "Could not load profiles.");
+        profileSelect.replaceChildren(new Option("Choose a clinician profile…", ""));
+        for (const profile of payload.profiles) {
+          profileSelect.add(new Option(profile.id, profile.filename));
+          if (profile.id === selectedId) profileSelect.value = profile.filename;
+        }
+      }
+
+      function setStatus(element, message, isError = false) {
+        element.textContent = message;
+        element.classList.toggle("error", isError);
+      }
+
+      function updateJobProgress(element, job) {
+        element.hidden = false;
+        const label = element.querySelector(".job-progress-label span");
+        const percentage = element.querySelector(".job-progress-label strong");
+        const bar = element.querySelector("progress");
+        const progress = Math.max(0, Math.min(100, Number(job.progress) || 0));
+        label.textContent = job.phase || "Working";
+        percentage.textContent = `${progress}%`;
+        bar.value = progress;
+        element.classList.toggle(
+          "loading",
+          job.status === "queued" || (job.status === "running" && progress < 8)
+        );
+      }
+
+      const wait = (milliseconds) =>
+        new Promise((resolve) => window.setTimeout(resolve, milliseconds));
+
+      async function submitForm(form, endpoint, statusElement, progressElement, button, loadingText) {
+        const originalText = button.textContent;
+        button.disabled = true;
+        button.textContent = loadingText;
+        progressElement.hidden = false;
+        updateJobProgress(progressElement, {
+          progress: 0,
+          phase: "Uploading audio",
+          status: "queued",
+        });
+        setStatus(statusElement, "Audio stays on this computer while it is processed.");
+        try {
+          const response = await fetch(endpoint, { method: "POST", body: new FormData(form) });
+          const payload = await response.json();
+          if (!response.ok) throw new Error(payload.error || "Could not start processing.");
+
+          let job = payload;
+          if (payload.job_id) {
+            while (true) {
+              await wait(750);
+              const statusResponse = await fetch(`/api/jobs/${encodeURIComponent(payload.job_id)}`);
+              const statusPayload = await statusResponse.json();
+              if (!statusResponse.ok) {
+                throw new Error(statusPayload.error || "Could not read processing status.");
+              }
+              job = statusPayload;
+              updateJobProgress(progressElement, job);
+              if (job.status === "completed") return job.result;
+              if (job.status === "failed") throw new Error(job.error || "Processing failed.");
+            }
+          }
+          return payload;
+        } catch (error) {
+          setStatus(statusElement, error.message || "The request failed.", true);
+          progressElement.classList.remove("loading");
+          return null;
+        } finally {
+          button.disabled = false;
+          button.textContent = originalText;
+        }
+      }
+
+      $("#enroll-form").addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const form = event.currentTarget;
+        const status = $("#enroll-status");
+        const clinicianId = $("#clinician-id").value.trim();
+        const existingProfile = [...profileSelect.options].some(
+          (option) => option.value && option.textContent === clinicianId
+        );
+        if (existingProfile && !confirm(`A profile for ${clinicianId} already exists. Replace it?`)) {
+          setStatus(status, "Existing profile was kept.");
+          return;
+        }
+        const payload = await submitForm(
+          form,
+          "/api/enroll",
+          status,
+          $("#enroll-progress"),
+          form.querySelector("button"),
+          "Creating profile…"
+        );
+        if (!payload) return;
+        setStatus(status, `Profile saved locally for ${payload.clinician_id}.`);
+        try {
+          await refreshProfiles(payload.clinician_id);
+        } catch (error) {
+          setStatus(status, error.message, true);
+        }
+      });
+
+      $("#analyze-form").addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const form = event.currentTarget;
+        const status = $("#analyze-status");
+        const payload = await submitForm(
+          form,
+          "/api/analyze",
+          status,
+          $("#analyze-progress"),
+          form.querySelector("button"),
+          "Analyzing audio…"
+        );
+        if (!payload) return;
+        setStatus(status, "Processing complete. Preparing speaker visualization…");
+        try {
+          if (
+            !Array.isArray(payload.speakers) ||
+            !Array.isArray(payload.segments) ||
+            !Number.isFinite(payload.threshold)
+          ) {
+            throw new Error("The server returned an incomplete analysis result.");
+          }
+          const file = audioInput.files[0];
+          if (!file) throw new Error("The conversation audio selection is no longer available.");
+          analysis = payload;
+          if (audioUrl) URL.revokeObjectURL(audioUrl);
+          audioUrl = URL.createObjectURL(file);
+          audioPlayer.src = audioUrl;
+          $("#audio-wrap").hidden = false;
+          renderResults();
+          resultSection.classList.add("visible");
+          setStatus(status, "Analysis complete. Review scores and speaker turns below.");
+          resultSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        } catch (error) {
+          console.error("Could not display analysis results:", error);
+          setStatus(
+            status,
+            `Analysis finished, but the visualization failed: ${error.message}`,
+            true
+          );
+        }
+      });
+
+      function renderResults() {
+        if (!analysis) return;
+        $("#results-subtitle").textContent =
+          `Profile ${analysis.clinician_id} · ${analysis.speakers.length} diarized speaker(s) · cutoff ${analysis.threshold.toFixed(2)}`;
+        const grid = $("#score-grid");
+        grid.replaceChildren();
+        for (const speaker of analysis.speakers) {
+          const card = document.createElement("article");
+          card.className = "score-card";
+          const top = document.createElement("div");
+          top.className = "score-top";
+          const name = document.createElement("span");
+          name.className = "speaker-name";
+          name.textContent = speaker.label;
+          const badge = document.createElement("span");
+          badge.className = `badge${speaker.matched ? " match" : ""}`;
+          badge.textContent = speaker.matched ? "CLINICIAN MATCH" : "UNKNOWN";
+          top.append(name, badge);
+          const score = document.createElement("div");
+          score.className = "score";
+          score.textContent = speaker.similarity.toFixed(3);
+          const caption = document.createElement("div");
+          caption.className = "score-caption";
+          caption.textContent = "Cosine similarity · not a probability";
+          const meter = document.createElement("div");
+          meter.className = "meter";
+          const fill = document.createElement("span");
+          fill.style.width = `${Math.max(0, Math.min(100, (speaker.similarity + 1) * 50))}%`;
+          meter.append(fill);
+          card.append(top, score, caption, meter);
+          grid.append(card);
+        }
+        renderTimeline();
+      }
+
+      function renderTimeline() {
+        const target = $("#timeline");
+        target.replaceChildren();
+        const labels = [...new Set(analysis.segments.map((segment) => segment.speaker))];
+        const playerDuration = Number.isFinite(audioPlayer.duration) ? audioPlayer.duration : 0;
+        timelineDuration = Math.max(playerDuration, analysis.duration, 0.01);
+        $("#timeline-duration").textContent = `${timelineDuration.toFixed(1)} seconds`;
+        if (!labels.length) {
+          target.innerHTML = '<div class="empty">No speaker turns were detected in this recording.</div>';
+          $("#timeline-current").textContent = formatTime(audioPlayer.currentTime || 0);
+          $("#active-speakers").textContent = "No active speaker";
+          return;
+        }
+        const speakerMap = new Map(analysis.speakers.map((speaker) => [speaker.label, speaker]));
+        const stack = document.createElement("div");
+        stack.className = "track-stack";
+        for (const label of labels) {
+          const track = document.createElement("div");
+          track.className = "track";
+          const trackLabel = document.createElement("span");
+          trackLabel.className = "track-label";
+          const speaker = speakerMap.get(label);
+          trackLabel.textContent = speaker && speaker.matched ? `${label} · clinician` : `${label} · unknown`;
+          const area = document.createElement("div");
+          area.className = "track-area";
+          area.setAttribute("role", "button");
+          area.setAttribute("tabindex", "0");
+          area.setAttribute("aria-label", `Seek original audio on ${label} lane`);
+          area.addEventListener("click", (event) => seekFromTimeline(event, area));
+          area.addEventListener("keydown", (event) => {
+            if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+              event.preventDefault();
+              seekTo(audioPlayer.currentTime + (event.key === "ArrowRight" ? 5 : -5));
+            } else if (event.key === "Home" || event.key === "End") {
+              event.preventDefault();
+              seekTo(event.key === "Home" ? 0 : timelineDuration);
+            }
+          });
+          for (const segment of analysis.segments.filter((item) => item.speaker === label)) {
+            const block = document.createElement("div");
+            block.className = `segment${speaker && speaker.matched ? "" : " unknown"}`;
+            block.dataset.speaker = label;
+            block.dataset.start = String(segment.start);
+            block.dataset.end = String(segment.end);
+            block.style.left = `${Math.max(0, segment.start / timelineDuration * 100)}%`;
+            block.style.width = `${Math.max(0.35, (segment.end - segment.start) / timelineDuration * 100)}%`;
+            block.title = `${label}: ${segment.start.toFixed(2)}s–${segment.end.toFixed(2)}s`;
+            block.setAttribute("aria-label", block.title);
+            if ((segment.end - segment.start) / timelineDuration > 0.055) {
+              block.textContent = `${segment.start.toFixed(1)}–${segment.end.toFixed(1)}s`;
+            }
+            area.append(block);
+          }
+          track.append(trackLabel, area);
+          stack.append(track);
+        }
+        const playhead = document.createElement("div");
+        playhead.className = "playhead-line";
+        playhead.setAttribute("aria-hidden", "true");
+        stack.append(playhead);
+        target.append(stack);
+
+        const axis = document.createElement("div");
+        axis.className = "axis";
+        for (let index = 0; index <= 4; index += 1) {
+          const tick = document.createElement("span");
+          tick.style.left = `${index * 25}%`;
+          tick.textContent = `${(timelineDuration * index / 4).toFixed(index === 0 ? 0 : 1)}s`;
+          axis.append(tick);
+        }
+        target.append(axis);
+        if (resizeObserver) resizeObserver.disconnect();
+        resizeObserver = new ResizeObserver(updatePlayhead);
+        resizeObserver.observe(stack);
+        updatePlayhead();
+      }
+
+      function formatTime(seconds) {
+        const safeSeconds = Math.max(0, Math.floor(seconds || 0));
+        const minutes = Math.floor(safeSeconds / 60);
+        return `${minutes}:${String(safeSeconds % 60).padStart(2, "0")}`;
+      }
+
+      function seekFromTimeline(event, trackArea) {
+        const rect = trackArea.getBoundingClientRect();
+        const fraction = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
+        seekTo(fraction * timelineDuration);
+      }
+
+      function seekTo(seconds) {
+        if (!Number.isFinite(audioPlayer.duration)) return;
+        audioPlayer.currentTime = Math.max(0, Math.min(audioPlayer.duration, seconds));
+        updatePlayhead();
+      }
+
+      function updatePlayhead() {
+        if (!analysis) return;
+        const stack = $(".track-stack");
+        if (!stack) return;
+        const area = stack.querySelector(".track-area");
+        const playhead = stack.querySelector(".playhead-line");
+        if (!area || !playhead) return;
+        const stackRect = stack.getBoundingClientRect();
+        const areaRect = area.getBoundingClientRect();
+        const fraction = Math.max(0, Math.min(1, (audioPlayer.currentTime || 0) / timelineDuration));
+        playhead.style.left = `${areaRect.left - stackRect.left + areaRect.width * fraction}px`;
+        $("#timeline-current").textContent = formatTime(audioPlayer.currentTime || 0);
+
+        const currentTime = audioPlayer.currentTime || 0;
+        const activeSegments = analysis.segments.filter(
+          (segment) => segment.start <= currentTime && currentTime < segment.end
+        );
+        const activeLabels = [...new Set(activeSegments.map((segment) => segment.speaker))];
+        $("#active-speakers").textContent = activeLabels.length
+          ? `Speaking: ${activeLabels.join(", ")}`
+          : "No detected speaker at this time";
+        stack.querySelectorAll(".segment").forEach((element) => {
+          element.classList.toggle(
+            "active",
+            activeSegments.some(
+              (segment) =>
+                element.dataset.speaker === segment.speaker &&
+                Number(element.dataset.start) === segment.start &&
+                Number(element.dataset.end) === segment.end
+            )
+          );
+        });
+      }
+
+      audioPlayer.addEventListener("loadedmetadata", () => {
+        if (analysis) renderTimeline();
+      });
+      audioPlayer.addEventListener("timeupdate", updatePlayhead);
+      audioPlayer.addEventListener("seeked", updatePlayhead);
+      window.addEventListener("beforeunload", () => {
+        if (audioUrl) URL.revokeObjectURL(audioUrl);
+      });
+
+      refreshProfiles().catch((error) => {
+        profileSelect.replaceChildren(new Option("Could not load profiles", ""));
+        setStatus($("#analyze-status"), error.message, true);
+      });
+    </script>
+  </body>
+</html>

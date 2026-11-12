@@ -91,6 +91,7 @@ The virtual environment is ignored by Git.
 To create a new environment on another computer:
 
 ```bash
+python3.12 --version
 python3.12 -m venv .venv
 source .venv/bin/activate
 ```
@@ -444,13 +445,13 @@ The repository intentionally does **not** contain:
 
 # 13. What Is NOT Finished
 
-The most important unfinished problem is:
+The matcher is now implemented, but it is experimental and has not been validated on representative clinical-style recordings. In particular:
 
-> The diarization system has not yet been validated reliably on the clinical-style two-speaker recording.
+- Diarization still needs evaluation on clean, representative clinician/patient conversations.
+- The cosine-similarity threshold needs evaluation using separate enrollment and test recordings.
+- The system must be checked for false matches before any real-world use.
 
-The AMI test shows that pyannote works, but the clinical recording needs additional testing.
-
-We should **not move too quickly to speaker identification** until the diarization stage is reliable enough.
+The AMI and `girls.wav` runs show that diarization can produce speaker turns, but they do not establish identity-matching accuracy.
 
 ---
 
@@ -556,117 +557,34 @@ This requires speaker embeddings and enrolled speaker profiles.
 
 ---
 
-# 16. Planned Speaker Recognition Stage
+# 16. Experimental Speaker Matching (Implemented)
 
-Once diarization is working reliably, the next major component will be speaker embeddings.
+The current implementation reuses the speaker embeddings returned by the
+pyannote Community-1 diarization pipeline. It does not add SpeechBrain or
+ECAPA-TDNN.
 
-The planned library is:
+`scripts/enroll_clinician.py` runs a clinician-only recording through
+diarization with `num_speakers=1` and saves a normalized embedding profile
+under the git-ignored `models/` directory. Multiple enrollment recordings can
+be combined into one profile.
 
-```text
-SpeechBrain
-```
+`src/pipeline.py` diarizes a conversation and compares each diarized speaker
+embedding with the enrolled profile using cosine similarity. The current
+default threshold (`0.75`) is experimental and has not been validated. If more
+than one speaker passes the threshold, no speaker is assigned as the
+clinician. Other speakers remain unknown; the program does not automatically
+label them as patients.
 
-with an ECAPA-TDNN speaker recognition model.
+`src/web_app.py` and `web/index.html` provide a local browser interface for
+enrollment and conversation analysis. It displays similarity cards, the
+speaker-turn timeline, and audio playback. It binds to localhost only and
+holds uploaded audio in a temporary directory while processing. The saved
+profile remains local in the git-ignored `models/` folder.
 
-The idea is:
-
-```text
-Speaker segment
-      ↓
-ECAPA-TDNN
-      ↓
-Speaker embedding
-      ↓
-Compare against enrolled clinician embeddings
-      ↓
-Best matching clinician
-```
-
-For example:
-
-```text
-Known clinician recordings
-
-Dr. Smith:
-    recording 1
-    recording 2
-    recording 3
-
-        ↓
-
-Generate embeddings
-
-        ↓
-
-Create Dr. Smith speaker profile
-```
-
-Then an unknown segment can be compared against that profile.
-
----
-
-# 17. Planned Clinician Enrollment
-
-The eventual system should have an enrollment process.
-
-For example:
-
-```text
-scripts/enroll_clinician.py
-```
-
-Possible workflow:
-
-```text
-Clinician recording
-       ↓
-Diarization / speech segmentation
-       ↓
-SpeechBrain ECAPA-TDNN
-       ↓
-Embedding
-       ↓
-Save clinician profile
-```
-
-A clinician profile could eventually contain:
-
-```text
-clinician_id
-embedding
-metadata
-```
-
-The actual design is still to be decided.
-
----
-
-# 18. Planned Speaker Identification
-
-After enrollment:
-
-```text
-New clinical conversation
-        ↓
-Diarization
-        ↓
-SPEAKER_00
-SPEAKER_01
-        ↓
-Extract embeddings
-        ↓
-Compare with enrolled clinicians
-        ↓
-Identify matching clinician
-```
-
-Potential output:
-
-```text
-0.0–4.2 sec   Dr. Smith
-4.2–8.1 sec   Patient
-8.1–12.4 sec  Dr. Smith
-```
+See the README for commands. A suitable next step is to evaluate the matcher
+with separate enrollment and test recordings, then tune and validate the
+threshold. Do not use these experimental results as the sole basis for
+clinical decisions.
 
 ---
 
@@ -674,25 +592,31 @@ Potential output:
 
 ### `src/diarization.py`
 
-Current priority.
-
-This is where diarization is being tested.
+Loads the gated Community-1 pipeline and provides shared diarization helpers.
 
 ### `src/speaker_embedding.py`
 
-Currently planned for the next stage.
-
-This will eventually contain the SpeechBrain/ECAPA-TDNN embedding logic.
+Validates and extracts the per-speaker embeddings returned by pyannote.
 
 ### `src/speaker_identification.py`
 
-Currently planned.
-
-This will eventually compare an unknown speaker embedding against known clinician embeddings.
+Creates and stores local clinician profiles, then compares speaker embeddings.
 
 ### `src/pipeline.py`
 
-Eventually this should combine the entire workflow.
+Runs diarization and experimental clinician matching end to end.
+
+### `src/web_app.py` and `web/index.html`
+
+Provide the local web interface, speaker scores, and visualization timeline.
+
+### `tests/test_speaker_identification.py`
+
+Tests embedding validation, profile persistence, and conservative matching.
+
+### `tests/test_web_app.py`
+
+Tests upload validation and analysis response formatting.
 
 ---
 
@@ -787,34 +711,11 @@ python src/diarization.py
 
 # 22. Where to Continue
 
-The most useful next task is:
-
-> **Get reliable two-speaker diarization on a clean clinical-style recording.**
-
-Do not start by training a new model.
-
-First determine whether the issue is caused by the test recording.
-
-Once diarization reliably produces something like:
-
-```text
-0.5s → 4.8s   SPEAKER_00
-4.8s → 9.2s   SPEAKER_01
-9.2s → 13.7s  SPEAKER_00
-13.7s → 18.5s SPEAKER_01
-```
-
-then move to:
-
-```text
-Speaker embeddings
-        ↓
-Clinician enrollment
-        ↓
-Speaker identification
-```
-
-The current project is therefore at:
+The basic AMI test and a longer `girls.wav` test have run. Clinician enrollment
+and embedding comparison are now implemented experimentally, but the
+threshold and reliability on representative clinical-style audio are not
+validated. The next work is evaluation with separate recordings and manual
+ground truth. The current project is therefore at:
 
 ```text
 [COMPLETED]
@@ -832,13 +733,6 @@ AMI validation
 
 [CURRENT]
 Reliable two-speaker clinical diarization
-
-[NEXT]
-Speaker embeddings
        ↓
-Clinician enrollment
-       ↓
-Clinician identification
-       ↓
-End-to-end pipeline
+Evaluate enrollment and clinician matching
 ```
